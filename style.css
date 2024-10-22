@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --main-color: rgb(59, 66, 74);
+    --my-gray: rgb(119, 119, 119);
+}
+
+
+body{
+    background-color: black;
+    color: white;
+    font-family: Roboto;
+    font-size: 10px;
+}
+
+/* Top level wrapper. The plain on which everything is sitting */
+.to-do-wrapper{
+    background-color: var(--main-color);
+    width: 50vw;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 40px auto;
+    align-items: center;
+}
+
+/* Epic To do list title */
+.title{
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* =============== Input Bar ========================== */
+/* ================= START ========================== */
+
+/* wrapper of input text bar and 'add task' btn */
+.input-wrapper{
+    /* border: 1px solid yellow; */
+    /* position: relative; */
+    margin: auto;
+    width: 85%;
+    display: flex;
+    gap: 2px;
+}
+
+/* Main input bar where user types */
+#input-bar{
+    padding: 7px 10px;
+    /* padding-left: 10px; */
+    background-color: rgb(53, 58, 64);
+    color: white;
+    /* border-style: none; */
+    border-radius: 3px;
+    border: 1px solid rgb(20, 58, 64);
+    width: 95%;
+}
+
+#input-bar::placeholder{
+    /* padding-left: 10px; */
+}
+
+#input-bar:focus{
+    /* border: none; */
+    outline: none;
+}
+
+#add-task-btn{
+    padding: 7px 0px;
+    border-style: none;
+    border-radius: 3px;
+    width: 16.2%;
+    cursor: pointer;
+    /* position: absolute;
+    left: 83%;
+    bottom: 2%; */
+
+    background-color: rgb(53, 58, 64);
+    border: 1px solid rgb(20, 58, 64);
+    color: rgb(119, 119, 119);
+}
+
+@media (max-width: 575px) {
+    #add-task-btn{
+        width: 36%;
+    }
+}
+
+
+#add-task-btn:hover{
+    background-color: rgb(66, 71, 77);
+    border: 1px solid rgb(66, 71, 77);
+    color: rgb(177, 177, 177);
+    margin: 0px;
+}
+
+
+/* =============== Input Bar ========================== */
+/* ================ END =============================== */
+
+
+
+
+/* ============= Task List Section ======================= */
+/* ================= START =============================== */
+
+/* The wrapper where all the task items will live */
+#list-wrapper{
+    width: 85%;
+    padding: 0px 0px;
+    margin: 1rem auto;
+    /* border: 2px solid yellow; */
+}
+
+.task-wrapper{
+    /* border: 2px solid blue; */
+    padding: 7px 0px;
+    border-bottom: 2px dotted rgb(81, 88, 91);
+    border-radius: 3px;
+
+    color: rgb(229, 229, 229);
+
+    list-style: none;
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 1rem;
+}
+
+.task-wrapper:hover{
+    /* background-color: rgb(240, 226, 226); */
+    background-color: rgb(72, 70, 77);
+    cursor: pointer;
+}
+
+.task-wrapper > button{
+    padding: 0px 7px;
+    background-color: var(--main-color);
+    color: rgb(119, 119, 119);
+    margin-right: 1rem;
+    border-style: none;
+    border-radius: 3px;
+    /* width: 16.2%; */
+    cursor: pointer;
+    position: relative;
+}
+
+.task-wrapper > button:hover{
+    cursor: pointer;
+    background-color: rgb(66, 71, 77);
+    /* border: 1px solid rgb(66, 71, 77); */
+    color: rgb(177, 177, 177);
+    /* margin: 0px; */
+}
+
+/* make the tooltip for 'delete task' */
+.task-wrapper > button > span{
+    position: absolute;
+    font-size: 0.8rem;
+    border: 1px solid rgb(78, 80, 85);
+    width: 5rem;
+    max-width: 5rem;
+    padding: 3px;
+    border-radius: 2px;
+    top: -10%;
+    left: 120%;
+    background-color: rgb(63, 68, 74);
+    color: rgb(158, 158, 158);
+    visibility: hidden;
+}
+
+/* make the arrowhead on the tooltip */
+.task-wrapper > button > span::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -6px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent rgb(78, 80, 85) transparent transparent;
+}
+
+/* reveal the tooltop when 'X' btn is hovered */
+.task-wrapper > button:hover span{
+    visibility: visible;
+}
+
+.task-content{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.task-wrapper  li{
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.task-content input{
+    opacity: 0;
+    display: none;
+}
+
+/* creating the checkbox box */
+.checkmark{
+    padding: 0px;
+    margin-top: 1px;
+    margin-left: 2px;
+    /* position: absolute; */
+    /* top: 10%;
+    left: 12%; */
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: rgb(93, 93, 93);
+}
+
+.task-wrapper:hover .checkmark{
+    cursor: pointer;
+    background-color: rgb(122, 122, 122);
+}
+
+.task-content input:checked ~ .checkmark{
+    background-color: rgb(51, 51, 51);
+}
+
+.task-content input:checked ~ li{
+    text-decoration: line-through;
+    color: grey;
+}
+
+/* Creating the tick mark */
+.checkmark::after{
+    content: "";
+    /* position: absolute; */
+    width: 3px;
+    height: 7px;
+    /* top: 10%;
+    left: 31%; */
+    margin: 2px 0px 0px 4px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    /* background-color: red; */
+    display: none;
+}
+
+.task-content input:checked ~ .checkmark::after{
+    display: block;
+}
+
+
+.task-content > li{
+    /* border-bottom: 1px solid red; */
+    font-size: 0.95rem;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 10px;
+}
